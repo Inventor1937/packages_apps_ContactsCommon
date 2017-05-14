@@ -949,13 +949,8 @@ public class ImportExportDialogFragment extends DialogFragment
             case R.string.export_to_sim: {
                 String[] items = new String[tm.getPhoneCount()];
                 for (int i = 0; i < items.length; i++) {
-                    items[i] = getString(R.string.export_to_sim) + ": "
-                            + MoreContactUtils.getAcount(mActivity, i).name;
-                    String customLabel = MoreContactUtils.
-                            getCustomOperatorLabel(mActivity.getApplicationContext(), i);
-                    if(!TextUtils.isEmpty(customLabel)) {
-                        items[i] = customLabel;
-                    }
+                items[i] = getString(R.string.export_to_sim) + ": "
+                        + MoreContactUtils.getAcount(mActivity, i).name;
                 }
                 mExportSub = SimContactsConstants.SLOT1;
                 ExportToSimSelectListener listener = new ExportToSimSelectListener();
@@ -977,11 +972,6 @@ public class ImportExportDialogFragment extends DialogFragment
         for (int i = 0; i < items.length; i++) {
             items[i] = getString(R.string.import_from_sim) + ": "
                     + MoreContactUtils.getAcount(mActivity, i).name;
-            String customLabel = MoreContactUtils.
-                    getCustomOperatorLabel(mActivity.getApplicationContext(), i);
-            if(!TextUtils.isEmpty(customLabel)) {
-                items[i] = customLabel;
-            }
         }
         new AlertDialog.Builder(mActivity)
                 .setTitle(R.string.import_from_sim)

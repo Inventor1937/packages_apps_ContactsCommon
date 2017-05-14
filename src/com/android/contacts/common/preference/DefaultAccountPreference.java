@@ -19,14 +19,12 @@ package com.android.contacts.common.preference;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.preference.ListPreference;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountTypeWithDataSet;
 import com.android.contacts.common.model.account.AccountWithDataSet;
-import com.android.contacts.common.MoreContactUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -53,12 +51,7 @@ public class DefaultAccountPreference extends ListPreference {
         final AccountTypeManager accountTypeManager = AccountTypeManager.getInstance(getContext());
         List<AccountWithDataSet> accounts = accountTypeManager.getAccounts(true);
         for (AccountWithDataSet account : accounts) {
-            String accountName = account.name;
-            String customLabel = MoreContactUtils.getSimAccountName(getContext(), accountName);
-            if(!TextUtils.isEmpty(customLabel)) {
-                accountName = customLabel;
-            }
-            mAccountMap.put(accountName, account);
+            mAccountMap.put(account.name, account);
         }
         final Set<String> accountNames = mAccountMap.keySet();
         final String[] accountNamesArray = accountNames.toArray(new String[accountNames.size()]);
@@ -81,12 +74,7 @@ public class DefaultAccountPreference extends ListPreference {
 
     @Override
     public CharSequence getSummary() {
-        String customLabel = MoreContactUtils.getSimAccountName(getContext(),
-                mPreferences.getDefaultAccount());
-        if(TextUtils.isEmpty(customLabel)) {
-            return mPreferences.getDefaultAccount();
-        }
-        return customLabel;
+        return mPreferences.getDefaultAccount();
     }
 
     @Override

@@ -17,7 +17,6 @@
 package com.android.contacts.common.util;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.text.TextUtils.TruncateAt;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.contacts.common.R;
-import com.android.contacts.common.MoreContactUtils;
 import com.android.contacts.common.model.AccountTypeManager;
 import com.android.contacts.common.model.account.AccountType;
 import com.android.contacts.common.model.account.AccountWithDataSet;
@@ -125,11 +123,6 @@ public final class AccountsListAdapter extends BaseAdapter {
 
         icon.setImageDrawable(accountType.getDisplayIcon(mContext));
 
-        MoreContactUtils.setSimOperatorName(account.name, text2, mContext);
-        Drawable customIcon = MoreContactUtils.getDisplayIcon(mContext, account.name);
-        if (customIcon != null) {
-            icon.setImageDrawable(customIcon);
-        }
         return resultView;
     }
 
